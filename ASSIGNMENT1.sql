@@ -399,6 +399,13 @@ ORDER BY SUM ( QUANTITY) DESC
 select PRODUCT_NAME ,GADGET_TYPE FROM PRODUCTS
 where GADGET_TYPE = 'Electronic'
 
+--6. Write an SQL query to calculate the average order value for each customer. Include their 
+--names and contact information.
+--CUSTNAME ,EMAIL,PHONE, AVG
+SELECT C.CUSTOMER_ID ,C.FIRST_NAME,C.EMAIL,C.PHONE ,avg(O.TOTAL_AMOUNT) AS AVG_ORDER_FOR_eACH_CUST
+FROM 
+CUSTOMERS C  JOIN ORDERS O ON C.CUSTOMER_ID =O.CUSTOMER_ID
+GROUP BY C.CUSTOMER_ID,C.FIRST_NAME,C.EMAIL,C.PHONE
 
 --7. Write an SQL query to find the order with the highest total revenue. Include the order ID, 
 --customer information, and the total revenue.
@@ -453,16 +460,6 @@ JOIN PRODUCTS P                      ON P.PRODUCT_ID=OD.PRODUCT_ID
 WHERE O.ORDER_DATE BETWEEN @START AND @END
 
 
---6. Write an SQL query to calculate the average order value for each customer. Include their 
---names and contact information.
---CUSTNAME ,EMAIL,PHONE, AVG
-
-
-
-SELECT C.CUSTOMER_ID ,C.FIRST_NAME,C.EMAIL,C.PHONE ,avg(O.TOTAL_AMOUNT) AS AVG_ORDER_FOR_eACH_CUST
-FROM 
-CUSTOMERS C  JOIN ORDERS O ON C.CUSTOMER_ID =O.CUSTOMER_ID
-GROUP BY C.CUSTOMER_ID,C.FIRST_NAME,C.EMAIL,C.PHONE
 
 
 
